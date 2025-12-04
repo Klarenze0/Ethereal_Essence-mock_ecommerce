@@ -7,8 +7,6 @@ session_start();
 $userId = isset($_SESSION['id']) ? $_SESSION['id'] : null;
 
 if ($userId) {
-    // User is logged in, display user ID and show logout link
-    // echo "The user ID is: " . $userId;
     $profileLink = 'profile.php';
     echo "<script>
     window.onload = function() {
@@ -16,8 +14,6 @@ if ($userId) {
     };
   </script>";
 } else {
-    // User is not logged in, hide logout link
-    // echo "User ID is not set or is empty.";
     $profileLink = 'login.php';
     echo "<script>
             window.onload = function() {
@@ -26,43 +22,37 @@ if ($userId) {
           </script>";
 }
 if (isset($_POST['addtobag'])) {
-    // Get product_id from POST data
     $product_id = $_POST['product_id'];
-    $purchase_date = date("Y-m-d");  // Set current date and time for purchase_date
+    $purchase_date = date("Y-m-d");  
 
     if ($userId) {
-        // User is logged in, check the user_atc table
         $check_sql = "SELECT quantity FROM user_atc WHERE product_id = ? AND id = ?";
-        $table = 'user_atc'; // Set the table for logged-in user
+        $table = 'user_atc';
     } else {
-        // No user logged in, check the guest_atc table
         $check_sql = "SELECT quantity FROM guest_atc WHERE product_id = ?";
-        $table = 'guest_atc'; // Set the table for guest user
+        $table = 'guest_atc'; 
     }
 
-    // Check if the product already exists in the respective table (user or guest)
     if ($stmt = $conn->prepare($check_sql)) {
         if ($userId) {
-            $stmt->bind_param("ii", $product_id, $userId);  // Bind user ID with product ID for logged-in user
+            $stmt->bind_param("ii", $product_id, $userId); 
         } else {
-            $stmt->bind_param("i", $product_id);  // Bind only product ID for guest user
+            $stmt->bind_param("i", $product_id); 
         }
         
         $stmt->execute();
         $result = $stmt->get_result();
 
         if ($result->num_rows > 0) {
-            // Product exists, update the quantity
             $row = $result->fetch_assoc();
             $new_quantity = $row['quantity'] + 1;
 
-            // Update the product in the appropriate cart table
             $update_sql = "UPDATE $table SET quantity = ?, purchase_date = ? WHERE product_id = ?";
             if ($update_stmt = $conn->prepare($update_sql)) {
                 if ($userId) {
-                    $update_stmt->bind_param("isi", $new_quantity, $purchase_date, $product_id); // For logged-in user
+                    $update_stmt->bind_param("isi", $new_quantity, $purchase_date, $product_id);
                 } else {
-                    $update_stmt->bind_param("isi", $new_quantity, $purchase_date, $product_id); // For guest user
+                    $update_stmt->bind_param("isi", $new_quantity, $purchase_date, $product_id); 
                 }
 
                 if ($update_stmt->execute()) {
@@ -73,19 +63,17 @@ if (isset($_POST['addtobag'])) {
                         });
                     </script>";
                 } else {
-                    // Handle failure to update
                     echo "<script>alert('Failed to add product quantity.');</script>";
                 }
             }
         } else {
-            // Product does not exist, insert a new row
             $insert_sql = "INSERT INTO $table (product_id, purchase_date, quantity" . ($userId ? ", id" : "") . ") VALUES (?, ?, ?" . ($userId ? ", ?" : "") . ")";
             if ($insert_stmt = $conn->prepare($insert_sql)) {
-                $quantity = 1; // Set initial quantity to 1
+                $quantity = 1; 
                 if ($userId) {
-                    $insert_stmt->bind_param("isii", $product_id, $purchase_date, $quantity, $userId); // For logged-in user
+                    $insert_stmt->bind_param("isii", $product_id, $purchase_date, $quantity, $userId);
                 } else {
-                    $insert_stmt->bind_param("isi", $product_id, $purchase_date, $quantity); // For guest user
+                    $insert_stmt->bind_param("isi", $product_id, $purchase_date, $quantity); 
                 }
 
                 if ($insert_stmt->execute()) {
@@ -96,7 +84,6 @@ if (isset($_POST['addtobag'])) {
                         });
                     </script>";
                 } else {
-                    // Handle failure to insert
                     echo "<script>alert('Failed to add product to cart.');</script>";
                 }
             }
@@ -125,7 +112,6 @@ if (isset($_POST['addtobag'])) {
 </head>
 <body>
     
-     <!--header-->
      <div class="navbar" id="navbar"> 
         <div class="container d-flex">
           <a href="index.php" class="imgcont">
@@ -174,7 +160,6 @@ if (isset($_POST['addtobag'])) {
               </div>
             </div>
       </div>
-      <!-- Men's Perfume -->
       
       <div class="topfavorite">
         <div class="container d-flex">
@@ -192,7 +177,6 @@ if (isset($_POST['addtobag'])) {
           <div class="mens">
 
           <?php
-           // Query to fetch product data
           $sql = "SELECT product_id, image, product_name, price FROM product_info WHERE category = 'male'";
           $result = $conn->query($sql);
 
@@ -206,7 +190,6 @@ if (isset($_POST['addtobag'])) {
                           <p class="price">P ' . number_format($row['price'], 2) . '</p>
                       </a>
                       <form method="POST">
-                <!-- Hidden Inputs to pass product data -->
                 <input type="hidden" name="product_id" value="' . $row['product_id'] . '">
                 <input type="hidden" name="image" value="' . $row['image'] . '">
                 <input type="hidden" name="product_name" value="' . $row['product_name'] . '">
@@ -230,7 +213,6 @@ if (isset($_POST['addtobag'])) {
         <div class="womens">
           
         <?php
-        // Query to fetch product data
         $sql = "SELECT product_id, image, product_name, price FROM product_info WHERE category = 'female'";
         $result = $conn->query($sql);
 
@@ -244,7 +226,6 @@ if (isset($_POST['addtobag'])) {
                         <p class="price">P ' . number_format($row['price'], 2) . '</p>
                     </a>
                     <form method="POST">
-              <!-- Hidden Inputs to pass product data -->
               <input type="hidden" name="product_id" value="' . $row['product_id'] . '">
               <input type="hidden" name="image" value="' . $row['image'] . '">
               <input type="hidden" name="product_name" value="' . $row['product_name'] . '">
@@ -266,7 +247,6 @@ if (isset($_POST['addtobag'])) {
       </div>
     </div>
 
-      <!-- Footer -->
 
       <div class="footer">
         <div class="container d-flex">

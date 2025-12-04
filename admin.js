@@ -56,21 +56,19 @@ customers_account_list1.addEventListener('click', (e) =>{
 
 //user retrieval
 fetch('admin.php')
-    .then(response => response.json()) // Parse the response as JSON
+    .then(response => response.json())
     .then(users => {
         if (users.length === 0) {
             console.log("No users found");
         } else {
             const userContainer = document.getElementById("account_details");
 
-            // Clear the container before adding new data
             userContainer.innerHTML = '';
 
             users.forEach(user => {
                 const userDiv = document.createElement('div');
                 userDiv.classList.add('user');
 
-                // Add user information to the div
                 userDiv.innerHTML = `
                     <span>ID: ${user.id}</span>
                     <span>Name: ${user.name}</span>
@@ -85,44 +83,27 @@ fetch('admin.php')
     .catch(error => console.error('Error:', error));
 
 
-//button expand
-// const btn = document.getElementById("order_btn");
-// const orderDetails = document.querySelectorAll('.order_details div');
-
-
-// btn.addEventListener('click', function(e){
-
-//     orderDetails.forEach(function(div) {
-//         div.style.whiteSpace = (div.style.whiteSpace === 'nowrap') ? 'normal' : 'nowrap'; 
-//     });
-
-// });
 
 
 const editButtons = document.querySelectorAll(".edit-btn");
 const inputfields = document.getElementById("description-input");
 
-// Store the currently open product for comparison
 let openProductDetails = null;
 
 editButtons.forEach(button => {
     button.addEventListener("click", function () {
-        // Find the closest parent .product_details for the clicked button
         const productDetails = this.closest(".product_details");
 
-        // If another product was already opened, close it
         if (openProductDetails && openProductDetails !== productDetails) {
-            openProductDetails.style.whiteSpace = 'nowrap'; // Close the previously opened product
+            openProductDetails.style.whiteSpace = 'nowrap'; 
         }
 
-        // Toggle the white-space style for the clicked product
         if (productDetails.style.whiteSpace === 'nowrap' || !productDetails.style.whiteSpace) {
-            productDetails.style.whiteSpace = 'normal'; // Open the clicked product
+            productDetails.style.whiteSpace = 'normal'; 
         } else {
-            productDetails.style.whiteSpace = 'nowrap'; // Close it again if it's already open
+            productDetails.style.whiteSpace = 'nowrap'; 
         }
 
-        // Update the reference to the currently open product
         openProductDetails = productDetails;
 
         console.log(`Toggled white-space for Product ID: ${this.id.split('_')[1]}`);
@@ -131,32 +112,25 @@ editButtons.forEach(button => {
     });
 });
 
-// Attach event listeners to all feedback buttons
 
 let openFeedbackText = null;
 
-// Attach event listeners to all feedback buttons
 document.querySelectorAll(".see-btn").forEach(button => {
     button.addEventListener("click", function() {
-        // Find the closest .feedback_details parent to the clicked button
         const feedbackDetails = this.closest(".feedback_details");
         
-        // Find the .fb div inside this specific feedback_details
         const feedbackText = feedbackDetails.querySelector('.fb');
         
-        // If there is a previously opened feedback, collapse it
         if (openFeedbackText && openFeedbackText !== feedbackText) {
-            openFeedbackText.style.whiteSpace = 'nowrap'; // Collapse the previous feedback
+            openFeedbackText.style.whiteSpace = 'nowrap'; 
         }
         
-        // Toggle the white-space between normal and nowrap for the clicked feedback
         if (feedbackText.style.whiteSpace === 'normal') {
-            feedbackText.style.whiteSpace = 'nowrap'; // Collapse the text
+            feedbackText.style.whiteSpace = 'nowrap'; 
         } else {
-            feedbackText.style.whiteSpace = 'normal'; // Expand the text
+            feedbackText.style.whiteSpace = 'normal';
         }
 
-        // Update the reference to the currently opened feedback
         openFeedbackText = feedbackText;
     });
 });
@@ -166,7 +140,6 @@ document.querySelectorAll(".see-btn").forEach(button => {
 document.getElementById("pdf").addEventListener("click", () => {
     const orderContent = document.getElementById("order_content");
 
-    // Use html2pdf to convert the content of the div into a PDF
     html2pdf().from(orderContent).save();
 });
 

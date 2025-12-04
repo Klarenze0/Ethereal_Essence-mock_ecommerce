@@ -8,10 +8,9 @@ if (isset($_SESSION['productid'])) {
     $productId = $_SESSION['productid'];
     
 
-     // Fetch product details
     $query = "SELECT * FROM product_info WHERE product_id = ?";
     $stmt = $conn->prepare($query);
-    $stmt->bind_param("i", $productId); // Bind the product ID to the query
+    $stmt->bind_param("i", $productId); 
     $stmt->execute();
     $result = $stmt->get_result();
 
@@ -28,27 +27,13 @@ if (isset($_SESSION['productid'])) {
 
 
 
-
-// if (isset($_FILES['productImage']) && $_FILES['productImage']['error'] === UPLOAD_ERR_OK) {
-//     $fileName = $_FILES['productImage']['name'];
-//     // You can further validate file size or type here if needed
-//     echo "/WSTFINALPROJ/imageholder/" . $fileName;
-// } else {
-//     echo "No file uploaded or there was an error.";
-
-
-
-// /WSTFINALPROJ/IMAGES/no bg men/menperfume1 - png.png }
-
 if (isset($_POST['save'])) {
     if (isset($_FILES['productImage']) && $_FILES['productImage']['error'] === UPLOAD_ERR_OK) {
         $fileName = $_FILES['productImage']['name'];
         $path = "/WSTFINALPROJ/imageholder/" . $fileName;
     } else {
-        // Use session value for image if no file is uploaded
         $image = $_SESSION['image'];
         $path = $image;
-        // echo "Default path is: " . $path . "<br>"; 
     }
 
     $productId = $_SESSION['productid'];
@@ -59,28 +44,15 @@ if (isset($_POST['save'])) {
     $productStock = $_POST['productStock'];
     
 
-    // Output the results
-    // echo "Product ID: " . htmlspecialchars($productId) . "<br>";
-    // echo "Product Name: " . htmlspecialchars($productName) . "<br>";
-    // echo "Price: " . htmlspecialchars($productPrice) . "<br>";
-    // echo "Description: " . htmlspecialchars($productDescription) . "<br>";
-    // echo "Category: " . htmlspecialchars($productCategory) . "<br>";
-    // echo "Stock: " . htmlspecialchars($productStock) . "<br>";
-    // echo "Image: " . htmlspecialchars($path) . "<br>";
-
-    // Prepare the SQL query to update the product_info table
     $sql = "UPDATE product_info 
             SET product_name = ?, price = ?, description = ?, category = ?, stocks = ?, image = ?
             WHERE product_id = ?";
 
     $stmt = $conn->prepare($sql);
     if ($stmt) {
-        // Bind parameters to the query
         $stmt->bind_param("sissisi", $productName, $productPrice, $productDescription, $productCategory, $productStock, $path, $productId);
 
-        // Execute the query
         if ($stmt->execute()) {
-            // echo "Product information updated successfully!";
         } else {
             echo "Error updating product information: " . $stmt->error;
         }
@@ -93,7 +65,6 @@ if (isset($_POST['save'])) {
         const notifdiv = document.getElementById('notif');
         notifdiv.style.display = 'block';
         
-        // Redirect to admin.php after 3 seconds
         setTimeout(function () {
             window.location.href = 'admin.php';
         }, 1000);
@@ -105,19 +76,15 @@ if (isset($_POST['save'])) {
 
 if(isset($_POST['delete'])){
 
-    $productId = $_SESSION['productid']; // Retrieve the product ID from the session
+    $productId = $_SESSION['productid']; 
 
-    // Prepare the SQL query to delete the product
     $sql = "DELETE FROM product_info WHERE product_id = ?";
 
     $stmt = $conn->prepare($sql);
     if ($stmt) {
-        // Bind the product ID to the query
         $stmt->bind_param("i", $productId);
 
-        // Execute the query
         if ($stmt->execute()) {
-            // Notify the user and redirect
             echo "<script>
                 alert('Product deleted successfully!');
                 window.location.href = 'admin.php';
@@ -300,13 +267,11 @@ if(isset($_POST['delete'])){
 </head>
 <body>
 
-    <!-- Edit Product Form -->
     <div class="edit-product-form">
         <h2>Edit Product</h2>
         
         <form method="POST" enctype="multipart/form-data">
 
-    <!-- Display the current product image -->
     <div class="image-preview">
         <div>Current Product Image:</div>
         <img id="currentProductImage" src="<?php echo htmlspecialchars($product['image']); ?>" alt="Current Product Image" width = "300px" height = "400px">
@@ -376,19 +341,17 @@ if(isset($_POST['delete'])){
         const currentProductImage = document.getElementById('currentProductImage');
 
 productImageInput.addEventListener('change', function () {
-    const file = this.files[0]; // Get the selected file
+    const file = this.files[0];
     if (file) {
-        console.log("File name:", file.name); // Logs the file name
-        console.log("File type:", file.type); // Logs the file type
-        console.log("File size:", file.size); // Logs the file size (in bytes)
+        console.log("File name:", file.name); 
+        console.log("File type:", file.type); 
+        console.log("File size:", file.size); 
 
-        // Create a preview of the new image
         const reader = new FileReader();
         reader.onload = function (e) {
-            // Set the `src` attribute of the currentProductImage to the new image
             currentProductImage.src = e.target.result;
         };
-        reader.readAsDataURL(file); // Convert the file to a data URL for preview
+        reader.readAsDataURL(file); 
     }
 });
 

@@ -28,10 +28,7 @@
     src: url(FONTS/Rokkitt.ttf);
 }
 
-/* *{
-    outline: auto;
-} */
- 
+
 body{
     background-color: #F0E5DF;
 }
@@ -41,7 +38,6 @@ a{
     text-decoration: none;
 }
 
-/* Header */
 .navbar{
     background-color: #F0E5DF;
     border-bottom: solid 1px black;
@@ -114,8 +110,6 @@ a{
     gap: 50px;
 }
 
-/* there is something wrong with the search bar line*/
-
 .searchbar{
     width: 0px;
     border: none;
@@ -152,7 +146,6 @@ a{
     text-align: center;
 }
 
-/* Button */
 .addtobag{
     background-color:#D3B5AB;
     border-radius: 10px;
@@ -168,7 +161,6 @@ a{
 }
 
 
-/* Men's Perfume */
 
 .collection{
     background-color: #F0E5DF;
@@ -218,7 +210,6 @@ a{
 } 
 
 
-/* Footer */
 
 .footer a{
     color: black;

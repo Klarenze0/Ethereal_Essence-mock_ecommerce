@@ -241,13 +241,11 @@ if (isset($_POST['save'])) {
 </head>
 <body>
 
-    <!-- Edit Product Form -->
     <div class="edit-product-form">
         <h2>Add Product</h2>
         
         <form method="POST" enctype="multipart/form-data">
 
-    <!-- Display the current product image -->
     <div class="image-preview">
         <div>Current Product Image:</div>
         <img id="currentProductImage" src="" alt="Current Product Image" width = "300px" height = "400px">

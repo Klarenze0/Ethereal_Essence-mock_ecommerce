@@ -5,59 +5,58 @@ include ("server.php");
 session_start();
 
 
-// Check if the user is logged in and handle visibility of logout link
+
 $userId = isset($_SESSION['id']) ? $_SESSION['id'] : null;
 
 if ($userId) {
-    // User is logged in, display user ID and payment options
+    
     $profileLink = 'profile.php';
     echo "<script>
         window.onload = function() {
             document.getElementById('logoutLink').style.display = 'block';
         };
     </script>";
-    // Show the payment options
+    
     $paymentOptionsVisible = true;
   } else {
-    // User is not logged in, hide logout link and show default payment option (COD)
+    
     $profileLink = 'login.php';
     echo "<script>
             window.onload = function() {
                 document.getElementById('logoutLink').style.display = 'none';
             };
           </script>";
-    // Show only default payment option (COD)
+    
     $paymentOptionsVisible = false;
   }
   
 
-// Handle item removal (remove from either user_atc or guest_atc)
+
 if (isset($_POST['remove'])) {
-    // Get the product_id from POST data
+    
     $product_id = $_POST['product_id'];
 
-    // Check if the user is logged in (session exists)
+    
     if ($userId) {
-        // User is logged in, delete from user_atc table
+        
         $delete_sql = "DELETE FROM user_atc WHERE product_id = ? AND id = ?";
     } else {
-        // No user logged in, delete from guest_atc table
+        
         $delete_sql = "DELETE FROM guest_atc WHERE product_id = ?";
     }
 
-    // Prepare and execute the delete query
     if ($stmt = $conn->prepare($delete_sql)) {
         if ($userId) {
-            // If user is logged in, bind user ID and product ID
+            
             $stmt->bind_param("ii", $product_id, $userId);  
         } else {
-            // If no user logged in, bind only product ID
+            
             $stmt->bind_param("i", $product_id);  
         }
 
-        // Execute the query
+        
         if ($stmt->execute()) {
-            // Success message
+            
 
             echo "<script>
                               document.addEventListener('DOMContentLoaded', function () {
@@ -69,41 +68,41 @@ if (isset($_POST['remove'])) {
                                   
                               });
                           </script>";
-            // Optionally, refresh or redirect the page to update the cart view
+           
         } else {
-            // Failure to remove the product
+            
             echo "<script>alert('Failed to remove product from cart.');</script>";
         }
     } else {
-        // Handle preparation failure
+        
         echo "<script>alert('Failed to prepare the SQL query.');</script>";
     }
 }
 
 if (isset($_POST['confirm-btn'])) {
-    // Check if the user is logged in
+   
     $userId = isset($_SESSION['id']) ? $_SESSION['id'] : null;
 
-    // Choose the correct table and variables based on session
+    
     if ($userId) {
-        $table = 'user_atc'; // Logged in user, use user_atc table
+        $table = 'user_atc';
     } else {
-        $table = 'guest_atc'; // No user, use guest_atc table
+        $table = 'guest_atc'; 
     }
 
-    // SQL query to fetch all products and quantities from the selected table (user_atc or guest_atc)
+    
     $fetch_sql = "SELECT product_id, quantity FROM $table";
     $result = $conn->query($fetch_sql);
 
-    $is_stock_sufficient = true; // Flag to check stock sufficiency
+    $is_stock_sufficient = true;
 
     if ($result->num_rows > 0) {
-        // Loop through each product in the cart
+        
         while ($row = $result->fetch_assoc()) {
             $product_id = $row['product_id'];
             $quantity = $row['quantity'];
 
-            // Fetch the current stock, product name, and price for the product
+            
             $stock_sql = "SELECT product_name, price, stocks FROM product_info WHERE product_id = ?";
             if ($stock_stmt = $conn->prepare($stock_sql)) {
                 $stock_stmt->bind_param("i", $product_id);
@@ -112,7 +111,7 @@ if (isset($_POST['confirm-btn'])) {
                 $stock_data = $stock_result->fetch_assoc();
 
                 if ($quantity > $stock_data['stocks']) {
-                    // If requested quantity exceeds available stock, set flag to false and show error
+                    
 
                     echo "<script>
                                 document.addEventListener('DOMContentLoaded', function () {
@@ -121,52 +120,40 @@ if (isset($_POST['confirm-btn'])) {
                                         notifdiv.style.display = 'block';
                                     }
         
-                                    // Delay the redirect by 3 seconds (3000 milliseconds)
+                                    
                                     setTimeout(function() {
                                         window.location.href = 'index.php';
                                     }, 3000);
                                 });
                             </script>";
-                    $is_stock_sufficient = false; // Mark as insufficient stock
-                    break; // Exit the loop as one product already fails
+                    $is_stock_sufficient = false; 
+                    break; 
                 }
 
-                // Store product details (name, price, quantity) for later use in purchase history
+                
                 $product_name = $stock_data['product_name'];
                 $price = $stock_data['price'];
-                $total_price = $price * $quantity; // Calculate total price for this product
-                $date = date("Y-m-d"); // Current timestamp
-                $address = $_POST['address']; // Assuming it's passed in the form
+                $total_price = $price * $quantity; 
+                $date = date("Y-m-d"); 
+                $address = $_POST['address'];
 
-                // Insert into purchase history for each product
 $history_sql = "INSERT INTO purchase_history (customer_id, product_id, product_name, address, date, price, quantity) 
 VALUES (?, ?, ?, ?, ?, ?, ?)";
 
 if ($history_stmt = $conn->prepare($history_sql)) {
     $history_stmt->bind_param("iisssii", $userId, $product_id, $product_name, $address, $date, $price, $quantity);
-
-    if ($history_stmt->execute()) {
-        // Success, you can display a success message or redirect the user
-        // echo "<script>alert('Product added to purchase history.');</script>";
-    } else {
-        // echo "<script>alert('Failed to insert into purchase history.');</script>";
-    }
-} else {
-    // echo "<script>alert('Error preparing the insert query for purchase history.');</script>";
 }
 
             }
         }
 
         if ($is_stock_sufficient) {
-            // Proceed to update stocks and clear the cart if stock is sufficient for all items
-            $result->data_seek(0); // Reset the result pointer to reprocess the rows
+            $result->data_seek(0); 
 
             while ($row = $result->fetch_assoc()) {
                 $product_id = $row['product_id'];
                 $quantity = $row['quantity'];
 
-                // Update the product_info table to subtract the quantity from stocks
                 $update_sql = "UPDATE product_info SET stocks = stocks - ? WHERE product_id = ?";
                 if ($update_stmt = $conn->prepare($update_sql)) {
                     $update_stmt->bind_param("ii", $quantity, $product_id);
@@ -174,11 +161,9 @@ if ($history_stmt = $conn->prepare($history_sql)) {
                 }
             }
 
-            // After updating stocks, delete all products from the appropriate cart table
-            $delete_sql = "DELETE FROM $table WHERE purchase_id IS NOT NULL"; // Adjust condition as necessary
+            $delete_sql = "DELETE FROM $table WHERE purchase_id IS NOT NULL";
             if ($stmt = $conn->prepare($delete_sql)) {
                 if ($stmt->execute()) {
-                    // Cart cleared successfully, show confirmation message
                     echo "<script>
                               document.addEventListener('DOMContentLoaded', function () {
                                   const notifdiv = document.getElementById('notif3');
@@ -186,7 +171,6 @@ if ($history_stmt = $conn->prepare($history_sql)) {
                                       notifdiv.style.display = 'block';
                                   }
     
-                                  // Delay the redirect by 3 seconds (3000 milliseconds)
                                   setTimeout(function() {
                                       window.location.href = 'index.php';
                                   }, 3000);
@@ -200,92 +184,56 @@ if ($history_stmt = $conn->prepare($history_sql)) {
     }
 }
 
-
-
-
-   // Check if the "plus" or "minus" button was clicked
 if (isset($_POST['plus']) || isset($_POST['minus'])) {
 
-    // Get the current quantity and product ID from the form
     $current_quantity = $_POST['qtty'];
     $product_id = $_POST['product_id'];
 
-    // If the "plus" button was clicked, increment the quantity
     if (isset($_POST['plus'])) {
         $new_quantity = $current_quantity;
     }
-    // If the "minus" button was clicked, decrement the quantity
     elseif (isset($_POST['minus'])) {
-        // Ensure the quantity doesn't go below 1
         $new_quantity = max($current_quantity, 1);
     }
 
-    // Determine which table to update based on session status
     $table = isset($_SESSION['id']) ? 'user_atc' : 'guest_atc';
 
-    // Prepare the SQL statement to update the quantity in the appropriate table
     $update_sql = "UPDATE $table SET quantity = ? WHERE product_id = ?";
 
-    // Prepare and execute the SQL statement
     if ($stmt = $conn->prepare($update_sql)) {
         $stmt->bind_param("ii", $new_quantity, $product_id);
-        
-        // Execute the query
-        if ($stmt->execute()) {
-            // echo "Quantity updated successfully.";
-        } else {
-            // echo "Error updating quantity: " . $stmt->error;
-        }
-    } else {
-        // echo "Error preparing SQL statement: " . $conn->error;
-    }
+    } 
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Get the email and fullname values from the form
     $fullname = isset($_POST['fullname']) ? $_POST['fullname'] : '';
     $email = isset($_POST['email']) ? $_POST['email'] : '';
-  
-    // Now you can use these variables to do further processing
-    // echo "Full Name: " . htmlspecialchars($fullname) . "<br>";
-    // echo "Email: " . htmlspecialchars($email);
-  
-    // Check if the email already exists in the guest_info table
+
     $check_email_sql = "SELECT guest_email FROM guest_info WHERE guest_email = ?";
     
     if ($check_stmt = $conn->prepare($check_email_sql)) {
-        // Bind the email parameter to the prepared statement
         $check_stmt->bind_param("s", $email);
         
-        // Execute the query to check if the email exists
         $check_stmt->execute();
         $check_stmt->store_result();
   
-        // If the email exists, stop the insertion and show an alert
         if ($check_stmt->num_rows > 0) {
-            // echo "<br>Error: The email is already registered.";
         } else {
-            // Insert the new guest info if the email doesn't exist
             $sql = "INSERT INTO guest_info (guest_email, guest_name) VALUES (?, ?)";
             if ($stmt = $conn->prepare($sql)) {
-                // Bind the parameters to the prepared statement
-                $stmt->bind_param("ss", $email, $fullname);  // "ss" indicates two string parameters
+                $stmt->bind_param("ss", $email, $fullname);  
   
-                // Execute the query
                 if ($stmt->execute()) {
-                    // echo "<br>Guest information has been successfully saved.";
                 } else {
                     echo "<br>Error: " . $stmt->error;
                 }
   
-                // Close the statement
                 $stmt->close();
             } else {
                 echo "<br>Error preparing the SQL query: " . $conn->error;
             }
         }
   
-        // Close the check statement
         $check_stmt->close();
     } else {
         echo "<br>Error preparing the email check query: " . $conn->error;
@@ -389,7 +337,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
        <div class="wrapper">
         <h1>Shopping Cart</h1>
         <div class="line"></div>
-        <!-- Cart Header -->
          
         <div class="cart-header d-flex">
             
@@ -419,12 +366,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           
     <?php
 
-   // Check if the user is logged in
 $userId = isset($_SESSION['id']) ? $_SESSION['id'] : null;
 
 if ($userId) {
-    // User is logged in, get details from 'user_atc' table
-    $sql = "SELECT 
+
+$sql = "SELECT 
                 product_info.image,
                 product_info.product_name,
                 product_info.price,
@@ -435,18 +381,18 @@ if ($userId) {
             JOIN
                 user_atc ON product_info.product_id = user_atc.product_id
             WHERE 
-                user_atc.id = ?"; // Use user_id to get logged-in user's cart details
+                user_atc.id = ?";
 
-    // Prepare the SQL statement
+
     if ($stmt = $conn->prepare($sql)) {
-        $stmt->bind_param("i", $userId); // Bind the user ID parameter
+        $stmt->bind_param("i", $userId); 
         $stmt->execute();
         $result = $stmt->get_result();
 
         if ($result->num_rows > 0) {
-            // Display cart items for logged-in user
+
             while ($row = $result->fetch_assoc()) {
-                $subtotal = $row['price'] * $row['quantity']; // Calculate subtotal for each item
+                $subtotal = $row['price'] * $row['quantity'];
                 echo '
                     <div class="cart-item d-flex">
                         <div class="item-cart">
@@ -479,8 +425,8 @@ if ($userId) {
             echo "<script>
             document.addEventListener('DOMContentLoaded', function() {
             const btn = document.getElementById('checkoutBtn');
-            btn.disabled = true;  // Disable the button
-            btn.style.backgroundColor = 'gray';  // Change the background color to gray
+            btn.disabled = true; 
+            btn.style.backgroundColor = 'gray'; 
             });
           </script>";
 
@@ -490,7 +436,7 @@ if ($userId) {
         echo "Error preparing statement: " . $conn->error;
     }
 } else {
-    // User is not logged in, get details from 'guest_atc' table
+    
     $sql = "SELECT 
                 product_info.image,
                 product_info.product_name,
@@ -504,9 +450,9 @@ if ($userId) {
 
     if ($result = $conn->query($sql)) {
         if ($result->num_rows > 0) {
-            // Display cart items for guest user
+           
             while ($row = $result->fetch_assoc()) {
-                $subtotal = $row['price'] * $row['quantity']; // Calculate subtotal for each item
+                $subtotal = $row['price'] * $row['quantity']; 
                 echo '
                     <div class="cart-item d-flex">
                         <div class="item-cart">
@@ -539,8 +485,8 @@ if ($userId) {
             echo "<script>
         document.addEventListener('DOMContentLoaded', function() {
            const btn = document.getElementById('checkoutBtn');
-            btn.disabled = true;  // Disable the button
-            btn.style.backgroundColor = 'gray';  // Change the background color to gray
+            btn.disabled = true; 
+            btn.style.backgroundColor = 'gray';
         });
       </script>";
         }
@@ -706,15 +652,15 @@ if ($userId) {
         const paymentMethod = document.getElementById('paymentMethod');
         const accountInput = document.getElementById('account');
         
-        // Check if 'Cash on Delivery' is selected
+        
         if (paymentMethod.value === 'cod') {
          
-            accountInput.disabled = true;  // Disable account input for COD
+            accountInput.disabled = true; 
             accountInput.value = '';
-            accountInput.style.backgroundColor = '#f0f0f0';  // Gray color for disabled input
+            accountInput.style.backgroundColor = '#f0f0f0';  
         } else {
-            accountInput.disabled = false;  // Enable account input for other methods
-            accountInput.style.backgroundColor = '';  // Reset background color
+            accountInput.disabled = false;
+            accountInput.style.backgroundColor = ''; 
             
         }
     }

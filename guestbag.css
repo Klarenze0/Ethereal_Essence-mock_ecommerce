@@ -19,32 +19,28 @@ h1 {
 
 #img_cont{
   width: 100px;
-  /* background-color: aqua; */
   margin-left: 20px;
 }
 .item-cart img{
     max-width: 100px;
-    /* background-color: aqua; */
     
 }
 
 
 .item-cart{
   display: flex;
-    align-items: center; /* Ensures that content within the item is centered vertically */
+    align-items: center; 
    
     justify-content: center;
 }
 
 #qtty_cont{
 
-  /* background-color: red; */
   margin-left: 25px;
   width: 100px;
 }
 #quantity-controls{
 
-    /* background-color: red; */
     max-width: 100px;
 }
 
@@ -65,11 +61,8 @@ h1 {
   display: flex;
   justify-content: space-around;
   align-items: center;
- 
-  /* background-color: #f9f9f9; */
-  border-radius: 20px;
+   border-radius: 20px;
   margin-top: 10px;
-  /* height: 100px; */
  
 }
 
@@ -84,12 +77,10 @@ h1 {
 }
 
 #product_cont{
-  /* background-color: aqua; */
   width: 300px;
   margin-left: 25px;
 }
 .product_cont{
-  /* background-color: aqua; */
   width: 300px;
 }
 
@@ -110,7 +101,6 @@ h1 {
 
 #price_cont,
 #sub_cont {
-    /* background-color: aqua; */
   font-size: 25px;
 }
 #price_cont{
@@ -122,7 +112,6 @@ h1 {
 
 .price,
 .subtotal {
-    /* background-color: aqua; */
   font-size: 25px;
 }
 
@@ -204,13 +193,6 @@ h1 {
 }
 
 
-
-
-/* CSS */
-
-
-/*  */
-
 .container .notif {
   font-family: rokkit;
   width: 350px;
@@ -267,7 +249,6 @@ h1 {
   
   .btn:hover {
   background-position: right center;
-  /* change the direction of the change here */
   color: #fff;
   text-decoration: none;
   }
@@ -277,7 +258,6 @@ h1 {
   }
 
 
-/*  */
 .container .notif2 {
   font-family: rokkit;
   width: 350px;
@@ -335,7 +315,6 @@ h1 {
   
   .btn2:hover {
   background-position: right center;
-  /* change the direction of the change here */
   color: #fff;
   text-decoration: none;
   }
@@ -344,7 +323,6 @@ h1 {
   transform: scale(0.95);
   }
   
-  /*  */
 
   .container .notif3 {
     font-family: rokkit;
@@ -403,7 +381,6 @@ h1 {
     
     .btn3:hover {
     background-position: right center;
-    /* change the direction of the change here */
     color: #fff;
     text-decoration: none;
     }
@@ -448,9 +425,6 @@ h1 {
   src: url(FONTS/Rokkitt.ttf);
 }
 
-/* *{
-    outline: auto;
-} */
 
 body {
   background-color: #f0e5df;
@@ -461,11 +435,9 @@ a {
   text-decoration: none;
 }
 
-/* Header */
 .navbar {
   background-color: #f0e5df;
   border-bottom: solid 1px black;
-  /* position: fixed; */
   width: 100%;
 }
 
@@ -528,8 +500,6 @@ a {
   gap: 50px;
 }
 
-/* there is something wrong with the search bar line*/
-
 .searchbar {
   width: 0px;
   border: none;
@@ -551,7 +521,6 @@ a {
   outline: none;
 }
 
-/* Footer */
 
 .footer a {
   color: black;

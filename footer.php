@@ -14,7 +14,6 @@
 
 </head>
 <body>
-      <!-- Footer -->
 
       <div class="footer">
         <div class="container d-flex">
