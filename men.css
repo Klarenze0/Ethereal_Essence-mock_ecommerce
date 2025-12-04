@@ -1,0 +1,432 @@
+@font-face {
+    font-family: garamond;
+    src: url(FONTS/Garamond.ttf);
+}
+
+@font-face {
+    font-family: hind;
+    src: url(FONTS/Hind.ttf);
+}
+
+@font-face {
+    font-family: inter;
+    src: url(FONTS/Inter.ttf);
+}
+
+@font-face {
+    font-family: playfairdisplay;
+    src: url(FONTS/PlayfairDisplay.ttf);
+}
+
+@font-face {
+    font-family: publicsans;
+    src: url(FONTS/PublicSans.ttf);
+}
+
+@font-face {
+    font-family: rokkit;
+    src: url(FONTS/Rokkitt.ttf);
+}
+
+body{
+    background-color: #F0E5DF;
+}
+
+a{
+    color: black;
+    text-decoration: none;
+}
+
+/* Header */
+.navbar{
+    background-color: #F0E5DF;
+    border-bottom: solid 1px black;
+    position: fixed;
+    width: 100%;
+}
+
+.text{
+    font-family: garamond;
+    text-align: center;
+    justify-content: center;
+    justify-items: center;
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.text:hover{
+    cursor: pointer;
+}
+
+#name2{
+    font-size: 20px;
+}
+
+#name1{
+    font-size: 35px;
+}
+.image{
+    margin-right: -30px;
+}
+
+.image:hover{
+    cursor: pointer;
+}
+
+.icons a{
+    text-decoration: none;
+    color: black;
+    font-size: 20px;
+    padding: 10px;
+}
+
+
+.icons a:hover{
+    text-decoration: underline;
+    color: #B06F69;
+}
+
+
+
+.menus a{
+    font-family: rokkit;
+    text-decoration: none;
+    color: black;
+    font-size: 20px;
+}
+
+.menus a:hover{
+    text-decoration: underline;
+}
+
+.menus{
+    
+    justify-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 50px;
+}
+
+/* there is something wrong with the search bar line*/
+
+.searchbar{
+    width: 0px;
+    border: none;
+    background-color: transparent;
+    transition: 0.5s;
+}
+
+.search:hover >.searchbar{
+    width: 150px;
+    border-bottom: solid 1px black;
+}
+
+.searchbar:focus::placeholder{
+    color: transparent;
+}
+
+.searchbar:focus{
+    border-bottom: solid 1px black;
+    outline: none;
+}
+
+.topfavorite{
+    position: relative;
+    height: 100px;
+    background-color: #F0E5DF;
+    display: flex;
+    
+}
+
+.favorite{
+    width: 100%;
+    font-size: 74px;
+    font-family: garamond;
+    text-align: left;
+}
+
+/* Button */
+.addtobag{
+    background-color:#D3B5AB;
+    border-radius: 10px;
+    border: none;
+    font-size: 30px;
+    width: auto;
+    height: auto;
+}
+
+.addtobag:hover{
+    background-color: #F3CDCC;
+    color: black;
+}
+
+.line{
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    height: 1px; 
+    background-color: black;
+    margin-bottom: 50px;
+}
+/* Men's Perfume */
+
+.mensperfume{
+    
+    background-color: #F0E5DF;
+    width: 100%;
+    height: 2500px;
+
+    /* height: 5000px; */
+    font-family: garamond;
+}
+
+.mensperfume a{
+    color: black;
+    text-decoration: none;
+}
+
+.perfname, .price{
+    font-size: 25px;
+    margin: 0;
+}
+
+
+.items{
+    margin-top: 5%;
+    border-radius:5%;
+    /* background-color: rgba(0, 0, 0, 0.5); */
+    /* box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); */
+}
+
+.grid-container .container{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(15%, 1fr));
+    grid-gap: 10%;
+    grid-row-gap: 3%;
+    max-height: 2250px;
+    overflow-y:scroll;
+    overflow-x: hidden;
+}
+
+.grid-container div {
+    font-size: 36px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;   
+}
+
+.grid-container label{
+    width: 150px;
+    font-size: 30px;
+    background-color: rgba(255, 255, 255, 0.7);
+    transform: rotate(45deg) translate(-30%, 200%);
+    border-radius: 5%;
+    position: absolute;
+}
+
+.container .notif {
+    font-family: rokkit;
+    width: 350px;
+    height: 350px;
+    border-radius: 10px;
+    z-index: 5;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); 
+    justify-content: center;
+    align-items: center;
+    background-color: #F3CDCC;
+    padding: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+    
+}
+
+.notif_text{
+    margin-top: 25%;
+    text-align: center;
+    font-size: 40px;
+    margin-bottom: 1%;
+}
+
+
+.notif_btn {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    
+}
+
+.notif_btn button {
+  width: 100px;
+  height: 50px;
+  align-items: center;
+    justify-content: center;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  border-radius: 10px;
+  display: block;
+  border: 0px;
+  font-weight: 700;
+  box-shadow: 0px 0px 14px -7px #f09819;
+  background-image: linear-gradient(45deg, #FF512F 0%, #F09819  51%, #FF512F  100%);
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.btn:hover {
+  background-position: right center;
+  color: #fff;
+  text-decoration: none;
+}
+
+.btn:active {
+  transform: scale(0.95);
+}
+
+.notif_btn2 button {
+    width: 100px;
+    height: 50px;
+    align-items: center;
+      justify-content: center;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;
+    border-radius: 10px;
+    display: block;
+    border: 0px;
+    font-weight: 700;
+    box-shadow: 0px 0px 14px -7px #f09819;
+    background-image: linear-gradient(45deg, #FF512F 0%, #F09819  51%, #FF512F  100%);
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+  }
+  
+  .btn2:hover {
+    background-position: right center;
+    /* change the direction of the change here */
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  .btn2:active {
+    transform: scale(0.95);
+  }
+  
+
+/* Footer */
+
+.footer a{
+    color: black;
+    text-decoration: none;
+}
+.footer{
+    font-family: inter;
+    padding-top: 2%;
+    position: relative;
+    z-index: 3;
+    background-color:#F3CDCC;
+    font-size: 20px;
+}
+
+.footer-info{
+    width: 100%;
+    justify-content: space-evenly;
+}
+
+.signup{
+    border: none;
+    background-color: transparent;
+    border-bottom: 1px solid black;
+    margin-bottom: 20%;
+}
+
+.shopnow{
+    font-family: rokkit;
+    border: none;
+    background-color: #F0E5DF;
+    border-radius: 10px;
+    font-size: 30px;
+    height: 50px;
+    width: 200px;
+}
+
+.shopnow:hover{
+    background-color: #B06F69;
+    color: white;
+}
+
+.line{
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    height: 1px; 
+    background-color: black;
+}
+
+.credits{
+    padding: 1%;
+    text-align: center;
+}
+
+.contact{
+    font-weight: bold;
+}
+
+.container .footer-info{
+    padding-bottom: 1%;
+}
+
+.cta button{
+    font-family: rokkit;
+    background-color: #F0E5DF;
+    border-radius: 10px;
+    font-size: 30px;
+    border: none;
+    width: 200px;
+    height: 50px;
+}
+
+.cta button:hover{
+    background-color: #B06F69;
+    color: white;
+}
+
+@keyframes appear {
+    from{
+        opacity: 0;
+        transform: translateX(-200px);
+    }to{
+        opacity: 1;
+        transform: translateX(0px);
+    }
+}
+
+.items {
+    animation: appear 1s ease forwards;
+} 
+
+
+@keyframes appear2 {
+    from{
+        opacity: 0;
+        transform: translateX(200px);
+    }to{
+        opacity: 1;
+        transform: translateX(0px);
+    }
+}
+
+.item {
+    animation: appear2 1s ease forwards;
+} 

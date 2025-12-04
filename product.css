@@ -1,0 +1,852 @@
+@font-face {
+  font-family: garamond;
+  src: url(FONTS/Garamond.ttf);
+}
+
+@font-face {
+  font-family: hind;
+  src: url(FONTS/Hind.ttf);
+}
+
+@font-face {
+  font-family: inter;
+  src: url(FONTS/Inter.ttf);
+}
+
+@font-face {
+  font-family: playfairdisplay;
+  src: url(FONTS/PlayfairDisplay.ttf);
+}
+
+@font-face {
+  font-family: publicsans;
+  src: url(FONTS/PublicSans.ttf);
+}
+
+@font-face {
+  font-family: rokkit;
+  src: url(FONTS/Rokkitt.ttf);
+}
+body{
+  background-color: #F0E5DF;
+
+}
+.tobaco-add-to-bag button:hover{
+  background-color: #B06F69;
+}
+
+.tobaco-add-to-bag button{
+  margin-top: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #F3CDCC;
+  border: #B06F69;
+  border-radius: 4px;
+  height: 42px;
+  width: 125px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.tobaco-price{
+  margin-top: 12px;
+  font-size: 15px
+}
+
+.tobaco-rating{
+ margin-top: 13px;
+}
+
+.tobaco-desc{
+  font-size: 13px;
+  margin-top: 8px;
+}
+
+.tobaco{
+  font-size: 18px;
+}
+
+.related-brand{
+  margin-top: 13px;
+  display: block;
+}
+
+.related-product-info{
+  margin-left: 11px;
+  margin-top: 22px;
+  width: 408px;
+  height: 254px;
+}
+
+.picpic{
+  width: 432px;
+  height: 432px;
+}
+
+.otherinfo-variant{
+  display: flex;
+  gap: 8px;
+  
+}
+
+.ml30{
+  border-style: solid;
+  border-width: 1px;
+  width: 65px;
+  height: 32px;
+  padding: 3px;
+  padding-left: 14px;
+  font-size: 13px;
+  padding-top: 5px;
+}
+
+.ml50{
+  border-style: solid;
+  border-width: 1px;
+  width: 68px;
+  height: 32px;
+  padding: 3px;
+  padding-left: 17px;
+  font-size: 13px;
+  padding-top: 5px;
+}
+
+.ml100{
+  border-style: solid;
+  border-width: 1px;
+  width: 74px;
+  height: 32px;
+  padding: 3px;
+  padding-left: 16px;
+  font-size: 13px;
+  padding-top: 5px;
+}
+
+.ml200{
+  border-style: solid;
+  border-width: 1px;
+  width: 76px;
+  height: 32px;
+  padding: 3px;
+  padding-left: 17px;
+  font-size: 13px;
+  padding-top: 5px;
+}
+
+.write-a-review{
+  border-style: solid;
+  border-width: 1px;
+  border-color: black;
+  width: 268px;
+  height: 44px;
+  text-align: center;
+  background-color: #F3CDCC;
+}
+
+
+.review-wrapper {
+  background-color: #F0E5DF;
+  display: flex;
+  justify-content: center;    /* Horizontally center the content 
+  align-items: center;        /* Vertically center the content */
+} 
+
+.review-summary{
+  padding-right: 40px;
+}
+
+.review-grid{
+  background-color: #F0E5DF;
+  display: flex;
+  justify-content: center;
+  align-items: center;  
+  padding-bottom: 24px;
+}
+
+
+.review-grid-col1 {
+  
+  width: 291px;
+  height: 150px;
+  display: flex;
+  flex-direction: column;     /* Stack elements vertically */
+  justify-content: center;    /* Center content vertically inside the column */
+  align-items: center;        /* Horizontally center the content */
+  padding-bottom: 24px;
+}
+
+.user-review {
+  padding-bottom: 7px;
+  gap: 4px;
+  display: flex;
+  justify-content: center;    /* Center the stars horizontally */
+  align-items: center;        /* Vertically align the stars */
+  margin-bottom: 10px;        /* Space between the review stars and the user name */
+}
+
+.review-desc {
+  display: flex;                      /* Use Flexbox to lay out elements horizontally */
+  flex-direction: column;             /* Stack children vertically by default */
+}
+
+.review-title {
+  display: flex;                      /* Use Flexbox to make title and date inline */
+  justify-content: space-between;     /* Push title and date apart */
+  align-items: center;                /* Align them vertically centered */
+}
+
+.date {
+  font-size: 14px;                    /* Style the date text */
+  color: #777;                        /* Optional: change the color of the date */
+}
+
+.review-other-desc {
+  font-size: 14px;
+  padding-top: 10px;
+}
+
+.review-comment {
+  font-size: 14px;
+  color: #555;
+}
+
+
+
+.review-summary {
+  display: flex;
+  align-items: center;       
+  gap: 3px;
+}
+
+.review{
+  background-color: #F0E5DF;
+  font-size: 20px;
+  font-weight: bold;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-top: 1px solid rgb(179, 179, 179);
+  margin-left: 25%;
+  margin-right: 25%;
+  text-align: center;
+  text-align: justify;
+}
+
+.review p{
+  font-weight: normal;
+}
+
+.related-container {
+  display: flex;
+  flex-direction: column;  
+  justify-content: flex-start; 
+  align-items: center;      
+  width: 100%;            
+  padding: 20px 0;    
+  background-color: #F0E5DF;    
+}
+
+.related h1{
+  font-size: 20px;
+}
+
+.related {
+  width: 100%;             
+  text-align: center;       
+  margin-bottom: 20px;      
+}
+
+.product-wrapper {
+  display: flex;
+  flex-wrap: wrap;           
+  justify-content: center;   
+  gap: 20px;                 
+  width: 100%;              
+}
+
+.product{
+  font-size: 13px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+.howtouse-border{
+  padding-bottom: 7px;
+  padding-top: 7px;
+  border-top: 1px solid rgb(179, 179, 179);
+  border-bottom: 1px solid rgb(179, 179, 179);
+  width: 343px;
+}
+
+.ingredients-border{ 
+  padding-top: 7px;
+  padding-bottom: 7px;
+  width: 343px;
+  border-bottom: 1px solid rgb(179, 179, 179);;
+}
+
+.product-detail{
+  padding-top: 7px;
+  padding-bottom: 7px;
+  
+}
+
+.product-details-border{
+  padding-bottom: 7px;
+  padding-top: 7px;
+  margin-top: 20px;
+  border-top: 1px solid rgb(179, 179, 179);
+  border-bottom: 1px solid rgb(179, 179, 179);
+  width: 343px;
+}
+
+.add-to-bag button:hover{
+  background-color: #B06F69;
+}
+
+.add-to-bag button{
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #F3CDCC;
+  border: #B06F69;
+  border-radius: 4px;
+  height: 45px;
+  width: 224px;
+  font-size: 13px;
+  font-weight: bold;
+  width: 100px;
+}
+
+.quantity-add-to-bag-container{
+  gap: 20px;
+  width: 75%;
+}
+
+.minus-symbol, .plus-symbol {
+  color: black; 
+}
+
+.input-box::-webkit-inner-spin-button,
+.input-box::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.input-box {
+  width: 50px;
+  text-align: center;
+  border: none;
+  padding: 8px 10px;
+  font-size: 16px;
+  outline: none;
+}
+
+.quantity button:hover {
+  background-color: #B06F69;
+}
+
+.quantity button {
+  background-color: #F3CDCC;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  width: 35px;
+  height: auto;
+  text-align: center;
+  transition: background-color 0.2s;
+}
+
+.quantity {
+  display: flex;
+  border: 2px solid #F3CDCC;
+  border-radius: 4px;
+  width: 110px;
+  height: 45px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.quantity-add-to-bag-container{
+  margin-top: 20px;
+}
+
+.variant-container{
+  margin-top: 20px;
+  gap: 12px;
+}
+
+.variant{
+  border-style: solid;
+  border-width: 1px;
+  width: 166.5px;
+  height: 54px;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-top: 6px;
+  font-size: 13px;
+}
+
+.price{
+   margin-top: 13px;
+}
+
+.perfume-tagline {
+  margin-top: 10px; 
+  font-size: 16px;
+  font-family: Garamond, serif;
+}
+
+.reviews b{
+  margin-right: 6px;
+}
+
+.star-rating{
+  margin-top: 7px;
+  display: flex;
+  align-items: center; 
+  width: 90%;
+  gap: 6px;   
+}
+
+.product-name{
+  font-size: 28px;
+  font-family: garamond;
+  display: inline-block;  
+  font-weight: bold;
+}
+
+.otherinfo-wrapper{
+  margin-left: 55px;
+}
+
+.pic1, .pic2, .pic3, .pic4 {
+  width: 94px; 
+  height: 94px;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.pics {
+  margin-left: 2%; /* Reduce margin for responsiveness */
+  flex-direction: column;
+}
+
+.info-holder{
+  width: 350px;
+}
+
+.owo {
+  display: flex;
+  padding-top: 80px;
+  /* margin-top: 80px; */
+  flex-wrap: wrap; /* Allow wrapping to new lines for responsiveness */
+  justify-content: center;
+  padding-bottom: 70px;
+  background-color: #F0E5DF;
+}
+
+.pic5-wrapper {
+  margin-left: 55px;
+}
+
+.pic5-wrapper img {
+   /* Make the image responsive */
+  width: 580px; /* Set a max width */
+  height: 580px;
+   /* Keeps the entire image visible without distortion */
+}
+
+
+body{
+  background-color: #F0E5DF;
+}
+
+a{
+  color: black;
+  text-decoration: none;
+}
+
+.navbar{
+  background-color: transparent;
+  border-bottom: solid 1px #D3B5AB;
+  width: 100%;
+}
+
+.text{
+  font-family: garamond;
+  text-align: center;
+  justify-content: center;
+  justify-items: center;
+  font-weight: bold;
+}
+
+.text:hover{
+  cursor: pointer;
+}
+
+#name2{
+  font-size: 20px;
+}
+
+#name1{
+  font-size: 35px;
+}
+.image{
+  margin-right: -30px;
+}
+
+.image:hover{
+  cursor: pointer;
+}
+
+.icons a{
+  text-decoration: none;
+  color: black;
+  font-size: 20px;
+  padding: 10px;
+}
+
+.icons a:hover{
+  text-decoration: underline;
+  color: #B06F69;
+}
+
+.menus a{
+  font-family: rokkit;
+  text-decoration: none;
+  color: black;
+  font-size: 20px;
+}
+
+.menus a:hover{
+  text-decoration: underline;
+}
+
+.menus{
+  
+  justify-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 50px;
+}
+
+/* there is something wrong with the search bar line*/
+
+.searchbar{
+  width: 0px;
+  border: none;
+  background-color: transparent;
+  transition: 0.5s;
+}
+
+.search:hover >.searchbar{
+  width: 150px;
+  border-bottom: solid 1px black;
+}
+
+.searchbar:focus::placeholder{
+  color: transparent;
+}
+
+.searchbar:focus{
+  border-bottom: solid 1px black;
+  outline: none;
+}
+
+.footer{
+  font-family: inter;
+  padding-top: 2%;
+  position: relative;
+  z-index: 3;
+  background-color:#F3CDCC;
+  font-size: 20px;
+}
+
+.footer-info{
+  width: 100%;
+  justify-content: space-evenly;
+}
+
+.signup{
+  border: none;
+  background-color: transparent;
+  border-bottom: 1px solid black;
+  margin-bottom: 20%;
+}
+
+.shopnow{
+  font-family: rokkit;
+  border: none;
+  background-color: #F0E5DF;
+  border-radius: 10px;
+  font-size: 30px;
+  height: 50px;
+  width: 200px;
+}
+
+.shopnow:hover{
+  background-color: #B06F69;
+  color: white;
+}
+
+.credits{
+  padding: 1%;
+  text-align: center;
+}
+
+.contact{
+  font-weight: bold;
+}
+
+.container .footer-info{
+  padding-bottom: 1%;
+}
+
+.cta button{
+  font-family: rokkit;
+  background-color: #F0E5DF;
+  border-radius: 10px;
+  font-size: 30px;
+  border: none;
+  width: 200px;
+  height: 50px;
+}
+
+.cta button:hover{
+  background-color: #B06F69;
+  color: white;
+}
+
+@keyframes appear {
+  from{
+      opacity: 1;
+      transform: translateX(-200px);
+  }to{
+      opacity: 1;
+      transform: translateX(0px);
+  }
+}
+
+.item1, .item3, .item5{
+  animation: appear linear;
+  animation-timeline: view();
+  animation-range: entry 0%;
+}
+
+@keyframes appear2 {
+  from{
+      opacity: 0;
+      transform: translateX(200px);
+  }to{
+      opacity: 1;
+      transform: translateX(0px);
+  }
+}
+
+.item2, .item4, .item6{
+  animation: appear2 linear;
+  animation-timeline: view();
+  animation-range: entry 0%;
+}
+
+.container .notif {
+  font-family: rokkit;
+  width: 350px;
+  height: 350px;
+  border-radius: 10px;
+  z-index: 5;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); 
+  justify-content: center;
+  align-items: center;
+  background-color: #F3CDCC;
+  padding: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.notif_text{
+  margin-top: 25%;
+  text-align: center;
+  font-size: 40px;
+  margin-bottom: 1%;
+}
+
+
+.notif_btn {
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+  
+}
+
+.notif_btn button {
+width: 100px;
+height: 50px;
+align-items: center;
+  justify-content: center;
+text-align: center;
+text-transform: uppercase;
+transition: 0.5s;
+background-size: 200% auto;
+color: white;
+border-radius: 10px;
+display: block;
+border: 0px;
+font-weight: 700;
+box-shadow: 0px 0px 14px -7px #f09819;
+background-image: linear-gradient(45deg, #FF512F 0%, #F09819  51%, #FF512F  100%);
+cursor: pointer;
+user-select: none;
+-webkit-user-select: none;
+touch-action: manipulation;
+}
+
+.btn:hover {
+background-position: right center;
+color: #fff;
+text-decoration: none;
+}
+
+.btn:active {
+transform: scale(0.95);
+}
+
+.review-holder{
+  max-height: 500px;
+  overflow-y: scroll;
+}
+
+.container .notif2 {
+  font-family: rokkit;
+  width: 350px;
+  height: 350px;
+  border-radius: 10px;
+  z-index: 5;
+  position: fixed; /* Changed to fixed */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #F3CDCC;
+  padding: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+
+
+.notif_btn2 {
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+  
+}
+
+.btn2{
+  margin: 10px;
+}
+
+
+.notif_btn2 button {
+  width: 100px;
+  height: 50px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  border-radius: 10px;
+  display: block;
+  border: 0px;
+  font-weight: 700;
+  box-shadow: 0px 0px 14px -7px #f09819;
+  background-image: linear-gradient(45deg, #FF512F 0%, #F09819  51%, #FF512F  100%);
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  }
+  
+  .btn2:hover {
+  background-position: right center;
+  /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
+  }
+  
+  .btn2:active {
+  transform: scale(0.95);
+  }
+
+#feedback{
+  width: 100%;
+  height: 50%;
+  margin-bottom: 10%;
+  vertical-align: top;
+}
+
+.container .notif3 {
+  font-family: rokkit;
+  width: 350px;
+  height: 350px;
+  border-radius: 10px;
+  z-index: 5;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); 
+  justify-content: center;
+  align-items: center;
+  background-color: #F3CDCC;
+  padding: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.notif_text3{
+  margin-top: 15%;
+  text-align: center;
+  font-size: 40px;
+  margin-bottom: 1%;
+}
+
+
+.notif_btn3{
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+  
+}
+
+
+.notif_btn3 button {
+  width: 100px;
+  height: 50px;
+  align-items: center;
+    justify-content: center;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  border-radius: 10px;
+  display: block;
+  border: 0px;
+  font-weight: 700;
+  box-shadow: 0px 0px 14px -7px #f09819;
+  background-image: linear-gradient(45deg, #FF512F 0%, #F09819  51%, #FF512F  100%);
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  }
+  
+  .btn3:hover {
+  background-position: right center;
+  /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
+  }
+  
+  .btn3:active {
+  transform: scale(0.95);
+  }

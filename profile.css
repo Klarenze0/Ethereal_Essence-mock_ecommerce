@@ -1,0 +1,383 @@
+/* Profile background container */
+body {
+    background-image: url('IMAGES/womensperfume/mainimage.png');
+    background-size: cover; /* Scales the image to cover the whole page */
+    background-position: center; /* Centers the image */
+    background-attachment: fixed; /* Keeps the image fixed in place when scrolling */
+}
+
+
+
+.profilebg {
+    width: 80%;
+    margin: 20px auto;
+    background-color: #F3CDCC;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.containerbg{
+
+    width: 80%;
+    margin: 20px auto;
+    background-color: #F3CDCC;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    height: 100%;
+}
+
+.containerbg .taas{
+    background-color: #F0E5DF;
+}
+#dp{
+    border-radius: 20px 0px 0px 20px;
+}
+
+#info{
+    border-radius: 0px 20px 20px 0px;
+}
+/* Hide the actual file input button */
+input[type="file"] {
+    width: 150px;
+    height: 40px;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+}
+#uploadLabel {
+    display: none; /* Hide upload label initially */
+}
+/* Create a custom label to act as the "Upload" button */
+input[type="file"] + label {
+    width: 150px;
+    height: 40px;
+    background-color: #B06F69;
+    color: #F0E5DF;
+    text-align: center;
+    line-height: 40px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    display: none; /* Initially hide */
+    margin-top: 15px;
+    margin-left: 5%;
+    text-transform: uppercase;
+    border-radius: 4px;
+}
+
+/* Image container for circular shape */
+.image-container {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid #ccc;
+    background-color: #eaeaea;
+    margin-top: 20px;
+    position: relative;
+    display: inline-block;
+}
+
+/* The image inside the circular container */
+.image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Profile layout */
+.proflayout {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Edit Profile Button */
+.edit-profile-btn button {
+    background-color: #B06F69;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.edit-profile-btn button:hover {
+    background-color: #8f5d54;
+}
+
+/* Save Changes Button */
+#saveChangesButton {
+    background-color: #F3CDCC;
+    color: #B06F69;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+#saveChangesButton:hover {
+    background-color: #E8B8B1;
+}
+
+/* Cancel Button */
+#cancelButton {
+    background-color: #B06F69;
+    color: #F0E5DF;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+#cancelButton:hover {
+    background-color: #8f5d54;
+}
+
+/* Profile information input fields */
+.profile-info input[type="text"],
+.profile-info input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 5px;
+    background-color: #fff;
+}
+
+/* Ensuring consistency across all editable fields */
+.profile-info input[type="text"]:focus,
+.profile-info input[type="email"]:focus {
+    border-color: #B06F69;
+    outline: none;
+}
+
+/* Profile information static text */
+.profile-info p {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+/* Hide input fields when not in editable state */
+.profile-info input[type="text"] {
+    display: none;
+}
+
+/* When in editable state, show input fields */
+.editable .profile-info input[type="text"],
+.editable .profile-info input[type="email"] {
+    display: block;
+}
+
+/* Show the upload label after edit profile */
+#uploadLabel {
+    display: none;
+}
+
+/* Editable class shows upload button */
+.profile-info.editable #uploadLabel {
+    display: block;
+}
+
+/* Ensure username is visible when not in editable state */
+.profile-info .username {
+    display: block;
+}
+
+/* When in editable state, hide the username */
+.profile-info.editable .username {
+    display: none;
+}
+
+
+
+/* Show First Name and Last Name only in editable mode */
+.profile-info.editable #firstName,
+.profile-info.editable #lastName {
+    display: block; /* Visible in edit mode */
+}
+
+
+
+/* Show the labels and input fields when in edit mode */
+.profile-info.editable #firstName,
+.profile-info.editable #lastName,
+.profile-info.editable label[for="firstName"],
+.profile-info.editable label[for="lastName"] {
+    display: block;
+}
+
+/* The static username should always be visible */
+.profile-info #username {
+    display: block;
+}
+
+/* Ensure the username input is hidden */
+.profile-info #usernameEdit {
+    display: none;
+}
+
+
+/* Show labels in edit mode */
+.profile-info.editable label[for="firstName"],
+.profile-info.editable label[for="lastName"] {
+    display: block;
+}/* Create a common container for buttons (Upload and Edit) */
+/* Create a common container for buttons (Upload and Edit) */
+.button-container {
+    text-align: center; /* Center the buttons */
+    margin-top: 15px; /* Add spacing between the buttons */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Edit Profile Button */
+#editProfileButton {
+    background-color: #B06F69; /* Same color as upload button */
+    color: #F0E5DF;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+    width: 150px; /* Same width as the upload button */
+    margin-top: 10px; /* Adjust space between buttons */
+}
+
+#editProfileButton:hover {
+    background-color: #8f5d54;
+}
+
+/* Create a custom label to act as the "Upload" button */
+input[type="file"] + label {
+    width: 150px;
+    height: 40px;
+    background-color: #B06F69;
+    color: #F0E5DF;
+    text-align: center;
+    line-height: 40px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    display: inline-block;
+    text-transform: uppercase;
+}
+
+/* Ensures that buttons align correctly in the layout */
+input[type="file"] {
+    display: none; /* Hide the actual file input */
+}
+
+/* When in editable state, display the upload button */
+.profile-info.editable #uploadLabel {
+    display: block;
+}
+/* Birthdate and Address Input fields */
+.profile-info input[type="date"],
+.profile-info input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 5px;
+    background-color: #fff;
+}
+
+/* Focus styles for address and birthdate input fields */
+.profile-info input[type="date"]:focus,
+.profile-info input[type="text"]:focus {
+    border-color: #B06F69;
+    outline: none;
+}
+
+/* Hide input fields for birthdate and address when not in editable state */
+.profile-info #birthDateEdit,
+.profile-info #addressEdit {
+    display: none;
+}
+
+/* Show input fields for birthdate and address when in editable state */
+.profile-info.editable #birthDateEdit,
+.profile-info.editable #addressEdit {
+    display: block;
+}
+
+/* Show the labels for birthdate and address in editable mode */
+.profile-info.editable label[for="birthDate"],
+.profile-info.editable label[for="address"] {
+    display: block;
+}
+
+/* Static text for birthdate and address fields */
+.profile-info #birthDate,
+.profile-info #address {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+/* Ensure birthdate and address are visible when not in editable state */
+.profile-info #birthDate,
+.profile-info #address {
+    display: block;
+}
+
+#saveChangesButton,
+#cancelButton {
+    margin-top: 20px; /* Adds space between the buttons and the phone number input */
+}
+
+/* Optionally, adjust the margin of other input fields as needed */
+.profile-info input[type="text"],
+.profile-info input[type="email"] {
+    margin-bottom: 20px; /* Adds space below each input field */
+}
+
+.purchase-history{
+    font-size: 26px;
+    height: 50%;
+    overflow-y: scroll;
+}
+.purchase-history h1{
+    text-align: center;
+}
+
+.product_name{
+
+    font-weight: bold;
+
+}
+
+.history-item p{
+    margin-bottom: 0px;
+}
+
+.history-item a{
+    color: black;
+
+}
+
+.history-item{
+    margin-bottom: 20px;
+}

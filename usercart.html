@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shopping Cart</title>
+  <link rel="stylesheet" href="CSS JS/Bootstrap/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="CSS JS/Font Awesome/css/font-awesome.min.css"/>
+  <link rel="stylesheet" href="usercart.css">
+  <link rel="stylesheet" href="collection.css">
+  <link rel="stylesheet" href="profile.css">
+</head>
+<body>
+ <!--User Cart-->
+  <!-- Header -->
+  <div class="navbar" id="navbarCart">
+    <div class="container d-flex">
+      <a href="index.html" class="imgcont">
+        <img src="IMAGES/others/logo.png" alt="Ethereal Essence" width="100px" class="image" />
+      </a>
+      <a href="index.html" class="text">
+        <div class="name" id="name1">Ethereal Essence</div>
+        <div class="name" id="name2">Scented Dreams</div>
+      </a>
+      <div class="menus d-flex">
+        <a href="men.html">MEN</a>
+        <a href="collection.html">PERFUME COLLECTION</a>
+        <a href="women.html">WOMEN</a>
+      </div>
+      <div class="icons d-flex">
+        <a href="profile.html"> <i class="fa fa-user-o"></i> </a>
+        <a href=""> <i class="fa fa-shopping-bag"></i> </a>
+      </div>
+    </div>
+</div>
+<div class="cart-container" id="cartContainer">
+  <h1>Shopping Cart</h1>
+  <div class="cart-header">
+      <span>Image</span>
+      <span>Product</span>
+      <span class="Quantity">Quantity</span>
+      <span class="Price">Price</span>
+      <span class="Subtotal">Subtotal</span>
+      <span>Remove Item</span>
+  </div>
+
+  <div class="cart-items-container">
+      <!-- Cart items will be dynamically injected here -->
+  </div>
+
+  <div class="cart-summary">
+      <h2>Cart Summary</h2>
+      <p>Total: $<span id="subtotal">0.00</span></p>
+      <button id="checkout-btn">Proceed to Checkout</button>
+  </div>
+
+<!-- Payment Options -->
+<div class="payment-options" id="paymentOptions" style="display: none;">
+  <h2>Select Payment Method</h2>
+  <form id="paymentForm">
+    <label>
+      <input type="radio" name="payment-method" value="Paypal" required> Paypal
+    </label>
+    <label>
+      <input type="radio" name="payment-method" value="Gcash"> Gcash
+    </label>
+    <label>
+      <input type="radio" name="payment-method" value="Paymaya"> Paymaya
+    </label>
+    <button type="button" id="confirm-payment-btn">Confirm Payment</button>
+    <button type="button" id="cancel-payment-btn">Cancel</button>
+  </form>
+</div>
+
+<!-- Confirmation Details -->
+<div class="confirmation-details" id="confirmationDetails" style="display: none;">
+  <h2>Order Confirmation</h2>
+  <div id="customerDetails">
+    <!-- Customer details will be inserted here -->
+  </div>
+  <h3>Purchased Items</h3>
+  <div id="purchasedItems">
+    <!-- Purchased items will be listed here -->
+  </div>
+
+  <p><strong>Total: $<span id="confirmationTotal">0.00</span></strong></p>
+
+  <div class = "goHome">
+    <a href="index.html"><button type="button" id="Home-btn">Home</button></a>
+  </div>
+  
+</div>
+  </form>
+</div>
+
+  <script src="usercart.js"></script>
+</body>
+</html>
